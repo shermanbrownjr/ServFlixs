@@ -1,0 +1,38 @@
+{
+  "name": "serveflixs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "backoff": "^2.5.0",
+    "castv2-client": "^1.2.0",
+    "colors": "^1.1.2",
+    "express": "^4.16.2",
+    "jquery": "^3.2.1",
+    "lodash": "^4.17.4",
+    "material-components-web": "^0.22.0",
+    "mdns": "^2.3.3",
+    "mongodb": "^2.2.33",
+    "pug": "^2.0.0-rc.4",
+    "request": "^2.83.0",
+    "slick-carousel": "^1.8.1",
+    "smb2": "^0.2.7"
+  },
+  "devDependencies": {
+    "css-loader": "^0.28.7",
+    "file-loader": "^1.1.5",
+    "gulp-nodemon": "^2.2.1",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.0",
+    "webpack": "^3.7.1",
+    "webpack-stream": "^4.0.0"
+  }
+}

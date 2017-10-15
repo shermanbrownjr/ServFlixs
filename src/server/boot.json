@@ -1,0 +1,13 @@
+{
+    "connectionString": "",
+    "theMovieDbApiKey": "",
+    "drives": [
+        {
+            "videoDriveAddress": "",
+            "videoDriveConnectionType": "",
+            "videoDriveUserName": "",
+            "videoDrivePassword": "",
+            "videoDirectory": "" 
+        }
+    ]
+}

@@ -1,0 +1,24 @@
+doctype html
+html(lang="en")
+    head
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        script(src="bundle.js")
+        title= title
+    body
+        header.mdc-toolbar.mdc-toolbar--fixed
+            .mdc-toolbar__row
+                section.mdc-toolbar__section.mdc-toolbar__section--align-start
+                    span.mdc-toolbar__title= title
+        main.mdc-toolbar-fixed-adjust
+            .video-container
+                .mdc-card.mdc-card--theme-dark
+                    section.mdc-card__primary
+                        img(src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTczNTI2ODUwOF5BMl5BanBnXkFtZTcwMTU0NTIzMw@@._V1_SY1000_CR0,0,674,1000_AL_.jpg")
+                    section.mdc-card__supporting-text
+                        .text-movie-cont
+                            h4 Iron Man
+                            ul.movie-gen
+                                li PG-13 / 2h 49min
+                                li Adventure, Drama, Sci-Fi
+                

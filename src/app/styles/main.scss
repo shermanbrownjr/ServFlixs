@@ -1,0 +1,30 @@
+@import '_variable.scss';
+@import '_movie-card.scss';
+@import '../../../node_modules/material-components-web/material-components-web.scss';
+header {
+    // background-color:rgba(0,0,0,0.75) !important;
+}
+
+body {
+    background-color: rgb(15, 15, 15);
+}
+
+.video-container {
+    margin-left: 20px;
+    margin-right: 20px;
+    .mdc-card {
+        img {
+            width: 100%;
+        }
+    }
+}
+
+.slick-slide {
+    margin-right: 3px;
+    margin-left: 3px;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    color: gray;
+}
