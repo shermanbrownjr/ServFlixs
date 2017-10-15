@@ -60,6 +60,3 @@ typings/
 
 #dist
 dist/
-
-#boot file
-src/server/boot.json

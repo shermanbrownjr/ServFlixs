@@ -81,7 +81,8 @@ var imdb = () => {
     }
 
     return {
-        findMovie: findMovie
+        findMovie: findMovie,
+        genres: genres
     }
 }
 
