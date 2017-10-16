@@ -97,7 +97,7 @@ var repository = () => {
         });
     }
 
-    var getMoviesByGenre = (args) => {
+    function getMoviesByGenre (args) {
         return new Promise((resolve, reject) => {
             try {
                 mongodb.connect(bootFile.connectionString, (err, db) => {

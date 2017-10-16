@@ -1,6 +1,7 @@
 var express = require('express');
 var movieRouter = express.Router();
 var Repo = require('./repo');
+var colors = require('colors');
 
 var router = (args) => {
 
@@ -9,28 +10,35 @@ var router = (args) => {
     movieRouter.route('/')
         .get((req, res) => {
             repo.getGenres().then((data) => {
-                populateMovieCategories(data, (categories)=>{
+                populateMovieCategories({ data: data[0] }, (categories) => {
                     res.render('index', { title: args.title, categories: categories })
                 });
             });
         });
 
     function populateMovieCategories(args, callback) {
-            try {
-                var categories = [];
+        try {
+            var categories = [];
 
-                args.genres.forEach(function (element) {
-                    var category = { genre: element };
+            args.data.genres.forEach(async (element, index, arr) => {
+                var category = { genre: element };
 
-                    repo.getMoviesByGenre({ genre: category.genre }).then((data) => {
-                        category.movies = data;
-                        categories.push(category);
-                    });
-                });
-            }
-            catch (err) {
-                console.log(colors.bgRed.yellow(err));
-            }
+                var data = await repo.getMoviesByGenre({ genre: category.genre });
+
+                if (data.length > 3) {
+                    category.movies = data;
+                    categories.push(category);
+                }
+
+                if (index == (arr.length - 1)) {
+                    callback(categories);
+                }
+
+            });
+        }
+        catch (err) {
+            console.log(colors.bgRed.yellow(err));
+        }
     }
 
     return movieRouter;
