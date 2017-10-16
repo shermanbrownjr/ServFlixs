@@ -26,7 +26,7 @@ var router = (args) => {
                 var data = await repo.getMoviesByGenre({ genre: category.genre });
 
                 if (data.length > 3) {
-                    category.movies = data;
+                    category.movies = shuffle(data);
                     categories.push(category);
                 }
 
@@ -39,6 +39,25 @@ var router = (args) => {
         catch (err) {
             console.log(colors.bgRed.yellow(err));
         }
+    }
+
+    function shuffle(array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
     }
 
     return movieRouter;

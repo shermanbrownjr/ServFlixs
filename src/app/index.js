@@ -15,8 +15,6 @@ import '../../node_modules/slick-carousel/slick/slick.min.js';
             slidesToShow: 5,
             slidesToScroll: 5,
             arrows: true,
-            autoplay: true,
-            autoplaySpeed: 2000,
             responsive: [
                 {
                     breakpoint: 1024,

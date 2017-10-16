@@ -2,12 +2,18 @@
 @import '_movie-card.scss';
 @import '../../../node_modules/material-components-web/material-components-web.scss';
 header {
-    // background-color:rgba(0,0,0,0.75) !important;
+     background-color:rgba(0,0,0,0.75) !important;
 }
 
 body {
     background-color: rgb(15, 15, 15);
 }
+
+.category-title{
+    margin-left: 40px;
+    margin-top: 80px;
+    font-size: 26px;
+} 
 
 .video-container {
     margin-left: 20px;
