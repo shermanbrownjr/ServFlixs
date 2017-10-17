@@ -2,6 +2,10 @@ var express = require('express');
 var movieRouter = express.Router();
 var Repo = require('./repo');
 var colors = require('colors');
+var graphqlHTTP = require('express-graphql');
+var movieSchema = require('./movie-schema');
+var moment = require('moment');
+var _ = require('lodash');
 
 var router = (args) => {
 
@@ -16,6 +20,32 @@ var router = (args) => {
             });
         });
 
+    movieRouter.route('/:title')
+        .get((req, res) => {
+            repo.getMovie({title: req.params.title}).then((data)=>{
+            
+                var movie = {
+                    vote: data.details.vote_count,
+                    voteAvg: `${_.round((data.details.vote_average/10)*100)}% User Score`,
+                    title: data.details.title.replace(/\s+/g, " "),
+                    popularityScore: data.details.popularity,
+                    posterPath: data.details.poster_path,
+                    backdropPath: data.details.backdrop_path,
+                    overview: data.details.overview,
+                    releaseDate: moment(data.details.release_date).format('MMMM YYYY'),
+                    genres : _.map(data.details.genre_ids,'name').join(' / ')
+                }
+
+                res.render('movie', { title: args.title, movie: movie })
+            });
+        });
+
+    movieRouter.use('/api', graphqlHTTP({
+        schema: movieSchema,
+        pretty: true,
+        graphiql: true
+    }));
+
     function populateMovieCategories(args, callback) {
         try {
             var categories = [];
@@ -26,7 +56,7 @@ var router = (args) => {
                 var data = await repo.getMoviesByGenre({ genre: category.genre });
 
                 if (data.length > 3) {
-                    category.movies = shuffle(data);
+                    category.movies = _.shuffle(data);
                     categories.push(category);
                 }
 
@@ -39,25 +69,6 @@ var router = (args) => {
         catch (err) {
             console.log(colors.bgRed.yellow(err));
         }
-    }
-
-    function shuffle(array) {
-        var currentIndex = array.length, temporaryValue, randomIndex;
-
-        // While there remain elements to shuffle...
-        while (0 !== currentIndex) {
-
-            // Pick a remaining element...
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex -= 1;
-
-            // And swap it with the current element.
-            temporaryValue = array[currentIndex];
-            array[currentIndex] = array[randomIndex];
-            array[randomIndex] = temporaryValue;
-        }
-
-        return array;
     }
 
     return movieRouter;

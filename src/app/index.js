@@ -5,12 +5,13 @@ import '../../node_modules/slick-carousel/slick/slick-theme.scss';
 import './styles/main.scss';
 import '../../node_modules/material-components-web/dist/material-components-web.js';
 import '../../node_modules/slick-carousel/slick/slick.min.js';
-    
+
 (() => {
     $(document).ready(function () {
+ 
         $('.video-container').slick({
             dots: false,
-            infinite: false,
+            infinite: true,
             speed: 300, 
             slidesToShow: 5,
             slidesToScroll: 5,
@@ -18,17 +19,17 @@ import '../../node_modules/slick-carousel/slick/slick.min.js';
             responsive: [
                 {
                     breakpoint: 1024,
-                    settings: {
+                    settings: { 
                         slidesToShow: 4,
-                        slidesToScroll: 4,
-                        infinite: true
-                    }
+                        slidesToScroll: 4
+                    } 
                 },
                 {
                     breakpoint: 600,
                     settings: {
                         slidesToShow: 3,
-                        slidesToScroll: 3
+                        slidesToScroll: 3,
+                        arrows: false
                     }
                 },
                 {

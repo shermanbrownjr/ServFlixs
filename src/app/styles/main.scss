@@ -7,12 +7,20 @@ header {
 
 body {
     background-color: rgb(15, 15, 15);
+    margin: 0px !important;
+}
+
+.mdc-toolbar__title{
+    font-family: $heading-font-family;
+    color: $accent-color; 
+    font-weight: $mont-regular !important;
+    font-size: 20px;
 }
 
 .category-title{
-    margin-left: 40px;
-    margin-top: 80px;
-    font-size: 26px;
+    margin-left: 40px; 
+    //margin-top: 80px;
+    font-size: 16px;
 } 
 
 .video-container {
@@ -21,6 +29,14 @@ body {
     .mdc-card {
         img {
             width: 100%;
+        }
+    }
+    a{
+        color: white;
+        text-decoration: none;
+        &:hover{
+            color: white;
+            text-decoration: none;
         }
     }
 }

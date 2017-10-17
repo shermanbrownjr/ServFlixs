@@ -1,25 +1,20 @@
-//@import "compass";
+// @import "compass";
 $accent-color: #e7e7e7;
-$brand-color:#fe4141;
-
-.container { 
+$brand-color:#00e871;
+.container {
     width: 100%;
     height: 100%;
 }
 
 .cellphone-container {
     width: 375px;
-    height: 667px;
     background-color: #1e1b26;
-    margin: 90px auto 0 auto;
+    margin: 0px auto 0px auto;
     box-shadow: 5px 5px 115px -14px black;
 }
 
 .movie-img {
     width: 100%;
-    height: 380px;
-    background: url("http://media.idownloadblog.com/wp-content/uploads/2014/12/interstellar-wide-space-film-movie-art-9-wallpaper.jpg");
-    /*background-size: contain;*/
     background-size: cover;
     z-index: 111 !important;
     -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.00, rgba(0, 0, 0, 1)), color-stop(0.35, rgba(0, 0, 0, 1)), color-stop(0.50, rgba(0, 0, 0, 1)), color-stop(0.65, rgba(0, 0, 0, 1)), color-stop(0.85, rgba(0, 0, 0, 0.6)), color-stop(1.00, rgba(0, 0, 0, 0)));
@@ -41,13 +36,12 @@ $brand-color:#fe4141;
     background-size: cover;
     z-index: 1 !important;
     width: 375px;
-    height: 667px;
     display: block;
 }
 
 .text-movie-cont {
     padding: 0px 12px;
-    text-align: justify;
+    //text-align: justify;
 }
 
 .action-btn {
@@ -74,6 +68,7 @@ $brand-color:#fe4141;
     border-radius:5px;
     padding:4px;
     width:140px;
+    margin-bottom: 30px;
 }
 
 .action-row {
@@ -101,12 +96,11 @@ $regular: 400;
 $semi-bold: 600;
 $bold: 700;
 $mont-regular: 400;
-$mont-bold: 700;
+$mont-bold: 700; 
 $text-movie-title:36px;
 $text-summary:12px;
 $text-action-btn:14px;
 $text-movie-description:12px;
-
 h1,
 h2,
 h3,
@@ -118,7 +112,7 @@ h5 {
 }
 
 h1 {
-    font-size: $text-movie-title;
+    font-size: $text-movie-title;   
     font-weight: $mont-regular;
 }
 
@@ -131,6 +125,9 @@ h3 {
 h5 {
     font-size: $text-summary;
     font-weight: $mont-regular;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .movie-gen {
