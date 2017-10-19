@@ -8,31 +8,41 @@ html(lang="en")
             'background':'linear-gradient(rgba(30,27,38, 0.90),rgba(30,27,38, 0.90)),url(https://image.tmdb.org/t/p/w300_and_h450_bestv2' + movie.backdropPath+')',
             'background-size': 'cover'
         })
-        .container
-            .cellphone-container
-                .movie
-                    img.movie-img(src="https://image.tmdb.org/t/p/w300_and_h450_bestv2" +movie.posterPath)
-                    .text-movie-cont
-                        .mr-grid
-                            .col1
-                                h1= movie.title
-                                ul.movie-gen
-                                    li= movie.releaseDate
-                                    li= movie.genres
-                        .mr-grid.summary-row 
-                            .col2 
-                                h5 SUMMARY
-                            .col2
-                                ul.movie-likes
-                                    li
-                                        i.material-icons= movie.voteAvg
-                        .mr-grid
-                            .col1
-                                p.movie-description= movie.overview
-                        .mr-grid.action-row
-                            .col2
-                                .watch-btn
-                                    h3
-                                        i.material-icons 
-                                        | WATCH 
+        header.mdc-toolbar.mdc-toolbar--fixed
+            .mdc-toolbar__row
+                section.mdc-toolbar__section.mdc-toolbar__section--align-start
+                    a(href="/").mdc-toolbar__title= title
+                section.mdc-toolbar__section.mdc-toolbar__section--align-end
+                    .typeahead__container
+                        .typeahead__field
+                            span.typeahead__query
+                                input.js-typeahead(type="search", name="searchBox", placeholder="search", id="search-box", autocomplete="off")
+        .wrapper.mdc-toolbar-fixed-adjust
+            .container
+                .cellphone-container
+                    .movie
+                        img.movie-img(src="https://image.tmdb.org/t/p/w300_and_h450_bestv2" +movie.posterPath)
+                        .text-movie-cont
+                            .mr-grid
+                                .col1
+                                    h1= movie.title
+                                    ul.movie-gen
+                                        li= movie.releaseDate
+                                        li= movie.genres
+                            .mr-grid.summary-row 
+                                .col2 
+                                    h5 SUMMARY
+                                .col2
+                                    ul.movie-likes
+                                        li
+                                            i.material-icons= movie.voteAvg
+                            .mr-grid
+                                .col1
+                                    p.movie-description= movie.overview
+                            .mr-grid.action-row
+                                .col2
+                                    .watch-btn
+                                        h3
+                                            i.material-icons 
+                                            | WATCH 
 

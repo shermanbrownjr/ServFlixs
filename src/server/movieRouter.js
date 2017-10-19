@@ -17,6 +17,8 @@ var router = (args) => {
                 populateMovieCategories({ data: data[0] }, (categories) => {
                     res.render('index', { title: args.title, categories: categories })
                 });
+            }).catch((err)=>{
+                console.log(colors.bgRed.yellow(err));
             });
         });
 
@@ -40,7 +42,7 @@ var router = (args) => {
             });
         });
 
-    movieRouter.use('/api', graphqlHTTP({
+    movieRouter.use('/movie/api', graphqlHTTP({
         schema: movieSchema,
         pretty: true,
         graphiql: true

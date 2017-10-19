@@ -9,8 +9,13 @@ html(lang="en")
         header.mdc-toolbar.mdc-toolbar--fixed
             .mdc-toolbar__row
                 section.mdc-toolbar__section.mdc-toolbar__section--align-start
-                    span.mdc-toolbar__title= title
-        main.mdc-toolbar-fixed-adjust
+                    a(href="/").mdc-toolbar__title= title
+                section.mdc-toolbar__section.mdc-toolbar__section--align-end
+                    .typeahead__container
+                        .typeahead__field
+                            span.typeahead__query
+                                input.js-typeahead(type="search", name="searchBox", placeholder="search", id="search-box", autocomplete="off")
+        main.mdc-toolbar-fixed-adjust 
             each category in categories 
                 h5.category-title= category.genre.name
                 .video-container
@@ -18,11 +23,9 @@ html(lang="en")
                         a(href="/"+movie.details.title)
                             .mdc-card.mdc-card--theme-dark
                                 section.mdc-card__primary
-                                    img(src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/" +movie.details.poster_path)
+                                    img(src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/" + movie.details.poster_path)
                                 section.mdc-card__supporting-text
                                     .text-movie-cont
                                         h5= movie.details.title.replace(/\s+/g, " ")
                                         ul.movie-gen
                                             li= moment(movie.details.release_date).format('YYYY')
-                                        
-

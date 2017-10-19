@@ -9,12 +9,25 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: "style-loader"
+                    }, {
+                        loader: "css-loader",
+                        options: {
+                            includePaths: ["./node_modules"]
+                        }
+                    }
+                ]
+            },
+            {
                 test: /\.scss$/,
                 use: [
                     {
                         loader: "style-loader"
                     }, {
-                        loader: "css-loader"
+                        loader: "css-loader",
                     }, {
                         loader: "sass-loader",
                         options: {

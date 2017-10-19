@@ -1,5 +1,6 @@
 const graphql = require('graphql');
 var repo = require('./repo')();
+var _ = require('lodash');
 
 const movie = new graphql.GraphQLObjectType({
     name: 'Movie',
@@ -67,6 +68,14 @@ const schema = new graphql.GraphQLSchema({
                             overview: data.details.overview,
                             releaseDate: data.details.release_date
                         }
+                    });
+                }
+            },
+            titles: {
+                type: new graphql.GraphQLList(graphql.GraphQLString),
+                resolve: (root, args) =>{
+                    return repo.getMovies().then((data) =>{
+                            return _.map(data,'details.title')
                     });
                 }
             },

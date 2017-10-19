@@ -16,7 +16,7 @@ var bootstrap = (args) => {
                 if (count <= 0) {
                     console.log(colors.bgWhite("Bootstrap: populating db"));
                     smbClient.readdir(args.dir, (err, dirs) => {
-
+                    
                         imdb.genres().then((data) => {
                             var genres = data.response.genres;
 
