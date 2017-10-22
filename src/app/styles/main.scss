@@ -1,12 +1,17 @@
-@import '_variable.scss';
-@import '_movie-card.scss';
+// $fa-font-path: "~font-awesome/fonts";
+// @import "~font-awesome/scss/font-awesome";
+
+@import '_variable.scss'; 
+@import '_movie-card.scss'; 
+@import '_cast-card.scss';
 @import '../../../node_modules/material-components-web/material-components-web.scss';
-header {
+
+header { 
      background-color:rgba(0,0,0,0.75) !important;
 }
 
 body {
-    background-color: rgb(15, 15, 15);
+    background-color: rgb(15, 15, 15);  
     margin: 0px !important;
 }
 

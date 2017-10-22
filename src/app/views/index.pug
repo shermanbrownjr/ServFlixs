@@ -20,7 +20,7 @@ html(lang="en")
                 h5.category-title= category.genre.name
                 .video-container
                     each movie in category.movies
-                        a(href="/"+movie.details.title)
+                        a(href="/"+movie.directory)
                             .mdc-card.mdc-card--theme-dark
                                 section.mdc-card__primary
                                     img(src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/" + movie.details.poster_path)
@@ -29,3 +29,37 @@ html(lang="en")
                                         h5= movie.details.title.replace(/\s+/g, " ")
                                         ul.movie-gen
                                             li= moment(movie.details.release_date).format('YYYY')
+        script.
+            $('.video-container').slick({
+                dots: false,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 5,
+                slidesToScroll: 5,
+                arrows: true,
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 4,
+                            slidesToScroll: 4
+                        }
+                    },
+                    {
+                        breakpoint: 769,
+                        settings: {
+                            slidesToShow: 4,
+                            slidesToScroll: 4,
+                            arrows: false
+                        }
+                    },
+                    {
+                        breakpoint: 376,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 2,
+                            arrows: false
+                        }
+                    }
+                ]
+            });

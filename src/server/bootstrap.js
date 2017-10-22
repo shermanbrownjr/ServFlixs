@@ -3,20 +3,30 @@ var colors = require('colors');
 var Repo = require('./repo');
 var Imdb = require('./imdb');
 var backoff = require('backoff');
+var Smb = require('smb2');
+var bootFile = require('./boot');
 
-var bootstrap = (args) => {
-    var smbClient = args.smbClient;
+var bootstrap = () => {
+    var movieDrive = bootFile.drives[0];
+
+    const smbClient = new Smb({
+        share: movieDrive.videoDriveAddress,
+        domain: '',
+        username: movieDrive.videoDriveUserName,
+        password: movieDrive.videoDrivePassword
+    });
+
     var repo = Repo();
     var imdb = Imdb();
-    var dir = args.dir;
+    var dir = movieDrive.videoDirectory;
 
     var firstRun = function () {
         try {
             repo.movieReferenceCount().then((count) => {
                 if (count <= 0) {
                     console.log(colors.bgWhite("Bootstrap: populating db"));
-                    smbClient.readdir(args.dir, (err, dirs) => {
-                    
+                    smbClient.readdir(dir, (err, dirs) => {
+
                         imdb.genres().then((data) => {
                             var genres = data.response.genres;
 
@@ -66,7 +76,7 @@ var bootstrap = (args) => {
 
                                             return false;
                                         });
- 
+
                                         call.setStrategy(new backoff.ExponentialStrategy());
                                         call.failAfter(10);
                                         call.start();

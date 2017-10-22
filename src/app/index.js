@@ -1,6 +1,8 @@
 import $ from 'jquery';
-window.$ = $;
-import '../../node_modules/slick-carousel/slick/slick.scss';
+window.$ = $; 
+
+import '../../node_modules/font-awesome/scss/font-awesome.scss'; 
+import '../../node_modules/slick-carousel/slick/slick.scss';  
 import '../../node_modules/slick-carousel/slick/slick-theme.scss';
 import './styles/main.scss';
 import '../../node_modules/material-components-web/dist/material-components-web.js';
@@ -13,9 +15,9 @@ import '../../node_modules/jquery-typeahead/dist/jquery.typeahead.min.js';
 
         $('#search-box').typeahead({
             order: "desc",
-            source: {
+            source: {  
                 movie: {
-                    ajax: { 
+                    ajax: {
                         type: "POST",
                         url: "/movie/api",
                         data: JSON.stringify({ query: "query {titles}" }),
@@ -38,48 +40,14 @@ import '../../node_modules/jquery-typeahead/dist/jquery.typeahead.min.js';
                     }
                 }
             }
-        }); 
-
-      $('#search-box').keyup(function(e){
-        if(e.keyCode == 13)
-        {
-            window.location.href = "/"+$('#search-box').val();
-        }
-    });
-
-        $('.video-container').slick({
-            dots: false,
-            infinite: true,
-            speed: 300,
-            slidesToShow: 5,
-            slidesToScroll: 5,
-            arrows: true,
-            responsive: [
-                {
-                    breakpoint: 1024,
-                    settings: {
-                        slidesToShow: 4,
-                        slidesToScroll: 4
-                    }
-                },
-                {
-                    breakpoint: 769,
-                    settings: {
-                        slidesToShow: 4,
-                        slidesToScroll: 4,
-                        arrows: false
-                    }
-                },
-                {
-                    breakpoint: 376,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2,
-                        arrows: false
-                    }
-                }
-            ]
         });
+
+        $('#search-box').keyup(function (e) {
+            if (e.keyCode == 13) {
+                window.location.href = "/" + $('#search-box').val();
+            }
+        });
+
     });
 })();
 

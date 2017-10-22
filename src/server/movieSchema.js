@@ -74,8 +74,8 @@ const schema = new graphql.GraphQLSchema({
             titles: {
                 type: new graphql.GraphQLList(graphql.GraphQLString),
                 resolve: (root, args) =>{
-                    return repo.getMovies().then((data) =>{
-                            return _.map(data,'details.title')
+                    return repo.getMovies().then((data) =>{ 
+                            return _.map(data,'directory')
                     });
                 }
             },

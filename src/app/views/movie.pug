@@ -38,11 +38,21 @@ html(lang="en")
                                             i.material-icons= movie.voteAvg
                             .mr-grid
                                 .col1
-                                    p.movie-description= movie.overview
+                                    p.movie-description= movie.overview 
                             .mr-grid.action-row
                                 .col2
-                                    .watch-btn
+                                    a(href="/"+movie.dir+"/"+movie.video).watch-btn
                                         h3
                                             i.material-icons 
                                             | WATCH 
-
+                                .col2
+                                    a(href="/cast/"+movie.dir+"/"+movie.video).watch-btn
+                                        h3
+                                            i.material-icons 
+                                            | CAST 
+        script.
+            $(document).ready(function () {
+                window.scrollTo(0,document.body.scrollHeight);
+            });
+        
+        

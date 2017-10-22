@@ -1,44 +1,39 @@
+
 var express = require('express');
-var bootFile = require('./boot');
+var ip = require('ip');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
 var colors = require('colors');
-var Smb = require('smb2');
 var Bootstrap = require('./bootstrap');
-var movieDrive = bootFile.drives[0];
-var movieRouter = require('./movieRouter')({ title: 'Flixs' });
+var session = require('express-session');
 
-const smbClient = new Smb({
-    share: movieDrive.videoDriveAddress,
-    domain: '',
-    username: movieDrive.videoDriveUserName,
-    password: movieDrive.videoDrivePassword
-});
-
- 
-var app = express(); 
 var port = process.env.PORT || 5000;
- 
-app.locals.moment = require('moment');
-app.locals._ = require('lodash'); 
+
+var app = express(); 
+app.use(cookieParser());
+app.use(session({ 
+    secret: "fd34s@!@dfa453f3DF#$D&W",
+    resave: false,
+    saveUninitialized: true
+}));
+
+app.locals.moment = require('moment'); 
+
 app.set('views', 'dist/app/views');
 app.set('view engine', 'pug');
+
+app.use(bodyParser.json()); 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('dist/app/lib'));
-app.use('/', movieRouter);
 
+var router = require('./router')({ title: 'Flixs', port: port });
+app.use('/', router);
 
-app.listen(port, () => {
-    var bootstrap = Bootstrap({
-        smbClient: smbClient,
-        dir: movieDrive.videoDirectory
-    });
+app.listen(port,'0.0.0.0', () => {
+    var bootstrap = Bootstrap();
 
     bootstrap.firstRun();
-    console.log(colors.green(`Now browse to localhost:${port}`));
+    console.log(colors.green(`Now browse to ${ip.address()}:${port}`));
 });
 
 module.exports = app;
-
-// for d in */ ; do
-// fixed=${d/ \///}
-// mv $d $fixed
-// echo $fixed
-// done

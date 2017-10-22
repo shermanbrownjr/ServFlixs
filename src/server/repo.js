@@ -101,7 +101,7 @@ var repository = () => {
         return new Promise((resolve, reject) => {
             try {
                 mongodb.connect(bootFile.connectionString, (err, db) => {
-                    var query = { 'details.title': args.title };
+                    var query = { directory: args.title };
                     var collection = db.collection('movies');
                     collection.findOne(query, (err, results) => {
                         resolve(results);

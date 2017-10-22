@@ -1,0 +1,80 @@
+doctype html
+html(lang="en")
+    head
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        script(src="../../../../../bundle.js")
+        title= title 
+    body(style={
+        'background':'linear-gradient(rgba(30,27,38, 0.95),rgba(30,27,38, 0.95)),url(https://image.tmdb.org/t/p/w300_and_h450_bestv2' + movie.backdropPath+')',
+        'background-size': 'cover'
+        })
+        header.mdc-toolbar.mdc-toolbar--fixed
+            .mdc-toolbar__row
+                section.mdc-toolbar__section.mdc-toolbar__section--align-start
+                    a(href="/").mdc-toolbar__title= title
+                section.mdc-toolbar__section.mdc-toolbar__section--align-end
+                    .typeahead__container
+                        .typeahead__field
+                            span.typeahead__query
+                                input.js-typeahead(type="search", name="searchBox", placeholder="search", id="search-box", autocomplete="off")
+        main.mdc-toolbar-fixed-adjust 
+            #project-wrapper
+                #project-container(style={
+                    'background':'url(https://image.tmdb.org/t/p/w300_and_h450_bestv2' + movie.posterPath+')'
+                    })
+                    #overlay
+                    #content
+                        h2= movie.title
+                        h3= movie.releaseDate
+                        #controls
+                            .column
+                                i.fa.fa-stop(aria-hidden="true")
+                            .column
+                                if movie.state == "pause"
+                                    i.fa.fa-play.play-btn.fa-fw(aria-hidden="true")
+                                else
+                                    i.fa.fa-pause.play-btn.fa-fw(aria-hidden="true")
+        script.
+            $(document).ready(function () {
+                $('.fa-stop').click(function(){
+                    $.ajax({
+                        type: "POST", 
+                        url : "/cast/stop"
+                        }).done(function()  {
+                            window.location.href = "/#{movie.dir}";
+                        }).fail(function()  {
+                            alert("Sorry. Server unavailable. ");
+                        });
+                });
+
+                $('.play-btn').click(function() {
+                    if ($(this).hasClass("fa-play")) {
+
+                        $.ajax({
+                            type: "POST", 
+                            url : "/cast/play"
+                        }).done(function()  {
+                            $('.play-btn').removeClass("fa-play");
+                            $('.play-btn').addClass("fa-pause");
+                        }).fail(function()  {
+                            alert("Sorry. Server unavailable. ");
+                        });
+                    } else {
+                        $.ajax({
+                            type: "POST", 
+                            url : "/cast/pause"
+                        }).done(function()  {
+                            $('.play-btn').removeClass("fa-pause");
+                            $('.play-btn').addClass("fa-play");
+                        }).fail(function()  {
+                            alert("Sorry. Server unavailable. ");
+                        });
+                    }
+                });
+
+                $('.column').click(function() {
+                    $(this).toggleClass("active");
+                })
+            });
+
