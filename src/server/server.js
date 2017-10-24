@@ -33,6 +33,8 @@ app.listen(port,'0.0.0.0', () => {
     var bootstrap = Bootstrap();
 
     bootstrap.firstRun();
+    bootstrap.importNew();
+
     console.log(colors.green(`Now browse to ${ip.address()}:${port}`));
 });
 

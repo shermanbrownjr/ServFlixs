@@ -9,7 +9,7 @@ var _ = require('lodash');
 var fs = require('fs');
 var path = require('path');
 var Chromecast = require('./chromecast');
-var ip = require('ip');
+var ip = require('ip'); 
 
 var appRouter = (args) => {
 
@@ -176,8 +176,9 @@ var appRouter = (args) => {
     function getFilePath(title) {
         var dir = path.resolve('/Volumes/Videos/Movies/', title);
 
-        const endsWith = (str, suffix) => str.indexOf(suffix, str.length - suffix.length) !== -1;
-        return fs.readdirSync(dir).filter(file => endsWith(file, ".mp4") || endsWith(file, ".avi") || endsWith(file, ".m4v"))[0];
+        var files = fs.readdirSync(dir).filter(file => !_.startsWith(file, '._') && (_.endsWith(file, ".mp4") || _.endsWith(file, ".avi") || _.endsWith(file, ".m4v")));
+        console.log(files);
+        return files[0];
     }
 
     return router;
