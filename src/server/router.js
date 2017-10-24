@@ -177,7 +177,7 @@ var appRouter = (args) => {
         var dir = path.resolve('/Volumes/Videos/Movies/', title);
 
         var files = fs.readdirSync(dir).filter(file => !_.startsWith(file, '._') && (_.endsWith(file, ".mp4") || _.endsWith(file, ".avi") || _.endsWith(file, ".m4v")));
-        console.log(files);
+        
         return files[0];
     }
 
